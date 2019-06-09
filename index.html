@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>平仄平仄平平仄->对联</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--js & css-->
+    <script src="https://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://u.mho.cx/layui/css/layui.css">
+</head>
+
+<body id="body-set"
+    style="opacity:1;background-repeat:no-repeat; background-attachment:fixed;background-image:url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1558960388436&di=93462e1ef0b92551a5e0554380ddb68e&imgtype=0&src=http%3A%2F%2Fbpic.ooopic.com%2F16%2F08%2F68%2F16086837-44dcd11b624c7547db55bf83265e0991-2.jpg);background-size:100%;">
+
+    <div class="layui-container">
+
+        <div class="layui-row layui-container">
+            <p>&nbsp;</p>
+        </div>
+        <div class="layui-row layui-container">
+            <p>&nbsp;</p>
+        </div>
+
+        <div class="layui-row layui-container" style="text-align: center;">
+            <div class="layui-col-md3">&nbsp;</div>
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        <h1><b>上联</b></h1>
+                    </label>
+                    <div class="layui-input-block">
+                        <input id='text' type="text" name="title" required lay-verify="required" placeholder="笑到几时方合口"
+                            autocomplete="off" class="layui-input">
+                    </div><br>
+                    <label id='next-tit' class="layui-form-label">
+                        <h1><b>下联</b></h1>
+                    </label>
+                    <h1><b></b>
+                        <div id='next' style="text-align: left;" ></div></b>
+                    </h1><br>
+                    <div id='for-next' class="layui-row layui-container">
+                        <p>&nbsp;</p>
+                    </div>
+                    <button id='but' class="layui-btn" lay-submit lay-filter="formDemo">生成下联</button>
+
+                </div>
+            </div>
+            <div class="layui-col-md3">&nbsp;</div>
+        </div>
+
+    </div>
+
+
+
+</body>
+<script>
+    $(document).ready(function () {
+        $('#next-tit').hide();
+        $('#next').hide();
+        $('#for-next').hide();
+
+        $('#but').click(function () {
+            var str = $('#text').val();
+            var url = 'http://127.0.0.1:8080/couplet?q=' + str;
+            if (str != '') {
+                $.get(url, function (data){
+                    $('#next').html(data);
+                    
+                });
+                $('#next-tit').show();
+                    $('#next').show();
+                    $('#for-next').show();
+            }
+        });
+    });
+</script>
+
+</html>
